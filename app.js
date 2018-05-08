@@ -1,6 +1,10 @@
-const express      = require('express');
+require('./aux/functions');
+require('./aux/config');
+require('./database/connection').initialize();
+
+const express = require('express');
 const http = require('http');
-const bodyParser   = require('body-parser');
+const bodyParser = require('body-parser');
 const api_routes = require('./routes/api_routes');
 const app = express();
 
@@ -18,14 +22,12 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use('/', api_routes);
+app.use('/api', api_routes);
 
 app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
+	res.status(404).send({success: false, response: 'Not found'});
 });
 
-http.createServer(app).listen(8081, () => {
-	console.log("Listening on: 8081");
+http.createServer(app).listen(CONFIG.port, () => {
+	console.log(`Listening on: ${CONFIG.port}`);
 });

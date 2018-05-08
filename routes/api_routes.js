@@ -3,7 +3,9 @@ const router = express.Router();
 
 const participant_controller = require('./../controllers/participant_controller');
 
-router.get('/participants', participant_controller.list);
+router	.get('/participants', participant_controller.list)
+				.get('/participants/:id', participant_controller.get);
+
 //router.get('/participants/:id', participant_controller.get);
 
 /*
