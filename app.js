@@ -1,6 +1,6 @@
-require('./aux/functions');
-require('./aux/config');
-require('./database/connection').initialize();
+require('./util/functions');
+require('./util/config');
+require('./database/connection');
 
 const express = require('express');
 const http = require('http');

@@ -1,26 +1,17 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 let connection;
 
-module.exports = {
-	initialize: async function() {
-		connection = await mysql.createConnection({
-		  host: CONFIG.db_host,
-		  user: CONFIG.db_user,
-		  password: CONFIG.db_password,
-		  database: CONFIG.db_name
-		});
-
-		console.log('Database initialized correctly');
-	},
-	get: function() {
+module.exports = async function() {
+	return new Promise(async resolve => {
 		if(!connection) {
-			console.error('Database not initialized');
-		}
-		else {
-			console.log('Returned database instance correctly');
+			connection = await mysql.createConnection({
+			  host: CONFIG.db_host,
+			  user: CONFIG.db_user,
+			  password: CONFIG.db_password,
+			  database: CONFIG.db_name
+			});
 		}
 
-		console.log('Returned database instance correctly');
-		return connection;
-	}
-};
+		resolve(connection);
+	});
+}

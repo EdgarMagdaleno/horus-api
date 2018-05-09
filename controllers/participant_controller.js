@@ -1,14 +1,13 @@
-(async () => {
-	const db = require('./../database/connection').get();
-})();
+const db = require('./../database/connection');
 
 const list = async function(req, res) {
 	res.setHeader('Content-Type', 'application/json');
+	let connection = await db();
 
-	console.log(db);
-  let [rows, fields] = await db.execute('select * from participants');
-  console.log(rows);
-	return res.send({success: true, response: {name: 'edgar', age: 21}});
+	let [err, output, fields] = await to(connection.execute('select * from participants'));
+	if(err) return res_errror(res, err, 422);
+
+	return res_success(res, output);
 }
 module.exports.list = list;
 
