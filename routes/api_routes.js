@@ -12,8 +12,8 @@ const package_controller			= require('./../controllers/package_controller');
 router	.post(		'/participants',				participant_controller.create)
 				.get(			'/participants/:id',		participant_controller.read_one)
 				.get(			'/participants/',				participant_controller.read_many)
-				.put(			'/participants',				participant_controller.update)
-				.delete(	'/participants',				participant_controller.del);
+				.put(			'/participants/:id',		participant_controller.update)
+				.delete(	'/participants/:id',		participant_controller.del);
 
 router	.post(		'/packages',				package_controller.create)
 				.get(			'/packages/:id?',		package_controller.read)
