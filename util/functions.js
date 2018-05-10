@@ -43,5 +43,7 @@ bad_request = function(res) {
 }
 
 parse_error = function(err) {
-	
+	try {
+		
+	}
 }
