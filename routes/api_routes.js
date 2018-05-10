@@ -1,10 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
-const participant_controller = require('./../controllers/participant_controller');
+// 200 OK
+// 400 Bad Request
+// 404 Not Found
+// 500 Internal Server Error
 
-router	.get('/participants', participant_controller.list)
-				.get('/participants/:id', participant_controller.get);
+const participant_controller	=	require('./../controllers/participant_controller');
+const package_controller			= require('./../controllers/package_controller');
+
+router	.post(		'/participants',				participant_controller.create)
+				.get(			'/participants/:id',		participant_controller.read_one)
+				.get(			'/participants/',				participant_controller.read_many)
+				.put(			'/participants',				participant_controller.update)
+				.delete(	'/participants',				participant_controller.del);
+
+router	.post(		'/packages',				package_controller.create)
+				.get(			'/packages/:id?',		package_controller.read)
+				.put(			'/packages',				package_controller.update)
+				.delete(	'/packages',				package_controller.del);
 
 //router.get('/participants/:id', participant_controller.get);
 

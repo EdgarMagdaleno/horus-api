@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
+	if(req.get('Content-Type') !== 'application/json') return bad_request(res);
+
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization, Content-Type');
@@ -25,7 +27,7 @@ app.use(function (req, res, next) {
 app.use('/api', api_routes);
 
 app.use(function(req, res, next) {
-	res.status(404).send({success: false, response: 'Not found'});
+	return bad_request(res);
 });
 
 http.createServer(app).listen(CONFIG.port, () => {
