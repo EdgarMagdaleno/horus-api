@@ -8,7 +8,7 @@ const router = express.Router();
 
 const participant_controller	=	require('./../controllers/participant_controller');
 const package_controller			= require('./../controllers/package_controller');
-const user_controller			= require('./../controllers/package_controller');
+const user_controller					= require('./../controllers/user_controller');
 
 router	.post(		'/participants',				participant_controller.create)
 				.get(			'/participants/:id',		participant_controller.read_one)
@@ -26,8 +26,8 @@ router	.post(		'/users',						user_controller.create)
 				.get(			'/users/:id',				user_controller.read_one)
 				.get(			'/users',						user_controller.read_many)
 				.put(			'/users/:id',				user_controller.update)
-				.delete(	'/users/:id',				user_controller.del);
-				.post(		'/users/login',			user_controller.login)
+				.delete(	'/users/:id',				user_controller.del)
+				.post(		'/users',						user_controller.login)
 
 //router.get('/participants/:id', participant_controller.get);
 

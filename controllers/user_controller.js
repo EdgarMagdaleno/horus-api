@@ -1,11 +1,18 @@
 const db			= require('./../database/connection');
-const bcrypt	= require('bcrypt') ;
+const bcrypt	= require('bcrypt');
+
+generate_hash = async function() {
+
+}
 
 const create = async function(req, res) {
 	let connection = await db();
 
-	let [err, rows] = await to(connection.query('INSERT INTO users SET ?', req.body));
-	if(err) return res_error(res, err);
+	let [err, hashed_password] = await bcrypt.hash(req.body.password, 9);
+	console.log(err, " ", hashed_password);
+
+	//let [err, rows] = await to(connection.query('INSERT INTO users SET ?', req.body));
+	//if(err) return res_error(res, err);
 
 	return res_success(res, rows);
 }
@@ -57,6 +64,6 @@ module.exports.del = del;
 const login = async function(req, res) {
 	let connection = await db();
 
-	
+	return res_success(res, {});
 }
 module.exports.login = login;
