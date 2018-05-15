@@ -6,15 +6,15 @@ const router = express.Router();
 // 404 Not Found
 // 500 Internal Server Error
 
-const participant_controller	=	require('./../controllers/participant_controller');
+const client_controller	=	require('./../controllers/client_controller');
 const package_controller			= require('./../controllers/package_controller');
 const user_controller					= require('./../controllers/user_controller');
 
-router	.post(		'/participants',				participant_controller.create)
-				.get(			'/participants/:id',		participant_controller.read_one)
-				.get(			'/participants',				participant_controller.read_many)
-				.put(			'/participants/:id',		participant_controller.update)
-				.delete(	'/participants/:id',		participant_controller.del);
+router	.post(		'/clients',				client_controller.create)
+				.get(			'/clients/:id',		client_controller.read_one)
+				.get(			'/clients',				client_controller.read_many)
+				.put(			'/clients/:id',		client_controller.update)
+				.delete(	'/clients/:id',		client_controller.del);
 
 router	.post(		'/packages',				package_controller.create)
 				.get(			'/packages/:id',		package_controller.read_one)
@@ -29,7 +29,7 @@ router	.post(		'/users',						user_controller.create)
 				.delete(	'/users/:id',				user_controller.del)
 				.post(		'/users',						user_controller.login)
 
-//router.get('/participants/:id', participant_controller.get);
+//router.get('/clients/:id', client_controller.get);
 
 /*
 const UserController 	= require('./../controllers/UserController');

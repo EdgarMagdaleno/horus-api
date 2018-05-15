@@ -3,7 +3,7 @@ const db = require('./../database/connection');
 const create = async function(req, res) {
 	let connection = await db();
 
-	let [err, rows] = await to(connection.query('INSERT INTO participants SET ?', req.body));
+	let [err, rows] = await to(connection.query('INSERT INTO Clients SET ?', req.body));
 	if(err) return res_error(res, err);
 
 	return res_success(res, rows);
@@ -14,7 +14,7 @@ const read_one = async function(req, res) {
 	if(!req.params.id || isNaN(req.params.id)) return bad_request(res);
 	let connection = await db();
 
-	let [err, rows] = await to_one(connection.query('SELECT * FROM participants WHERE id = ?', req.params.id));
+	let [err, rows] = await to_one(connection.query('SELECT * FROM Clients WHERE id = ?', req.params.id));
 	if(err) return res_error(res, err);
 
 	return res_success(res, rows);
@@ -24,7 +24,7 @@ module.exports.read_one = read_one;
 const read_many = async function(req, res) {
 	let connection = await db();
 
-	let [err, rows] = await to_many(connection.query('SELECT * FROM participants'));
+	let [err, rows] = await to_many(connection.query('SELECT * FROM Clients'));
 	if(err) return res_error(res, err);
 
 	return res_success(res, rows);
@@ -35,7 +35,7 @@ const update = async function(req, res) {
 	if(!req.params.id || isNaN(req.params.id)) return bad_request(res);
 	let connection = await db();
 
-	let [err, rows] = await to(connection.query('UPDATE participants SET ? WHERE id = ?', [req.body, req.params.id]));
+	let [err, rows] = await to(connection.query('UPDATE Clients SET ? WHERE id = ?', [req.body, req.params.id]));
 	if(err) return res_error(res, err);
 
 	return res_success(res, rows);
@@ -46,7 +46,7 @@ const del = async function(req, res) {
 	if(!req.params.id || isNaN(req.params.id)) return bad_request(res);
 	let connection = await db();
 
-	let [err, rows] = await to(connection.query('DELETE FROM participants WHERE id = ?', [req.params.id]));
+	let [err, rows] = await to(connection.query('DELETE FROM Clients WHERE id = ?', [req.params.id]));
 	if(err) return res_error(res, err);
 
 	return res_success(res, rows);
