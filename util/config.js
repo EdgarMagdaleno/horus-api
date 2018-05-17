@@ -1,6 +1,6 @@
 CONFIG = {}
 
-CONFIG.port         = '8081';
+CONFIG.port         = '3000';
 CONFIG.db_dialect   = 'mysql';
 CONFIG.db_host      = 'localhost';
 CONFIG.db_port      = '3306';
