@@ -39,7 +39,7 @@ module.exports = async function() {
 			return new Promise((resolve, reject) => {
 				Object.keys(body).forEach(key => {
 					if(structure[table][key] === undefined) {	
-						reject({code: 400, message: "Field \'" + key + "\' is not a part of the table \'" + table + '\''});
+						reject({code: 500, message: "Field \'" + key + "\' is not a part of the table \'" + table + '\''});
 					}
 				});
 
@@ -47,6 +47,7 @@ module.exports = async function() {
 			});
 		}
 
+		console.log(structure);
 		resolve(connection);
 	});
 }
