@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
-	if(req.get('Content-Type') !== 'application/json') return bad_request(res);
+	// if(req.get('Content-Type') !== 'application/json') return bad_request(res);
 
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

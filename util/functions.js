@@ -1,8 +1,16 @@
 to = function(promise) {
+	return promise.then(data => {
+		return [null, data];
+	}).catch(err => {
+		return [err];
+	});
+}
+
+to_do = function(promise) {
 	return promise
 	.then(data => {
 		if(data[0].affectedRows == 0) return [{code: 404, message: 'Not found'}];
-		return [null, null];
+		return [null, data[0]];
 	})
 	.catch(err => {
 		return [{code: 500, message: err.message}];

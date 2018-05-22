@@ -6,28 +6,13 @@ const router = express.Router();
 // 404 Not Found
 // 500 Internal Server Error
 
-const client_controller	=	require('./../controllers/client_controller');
-const package_controller			= require('./../controllers/package_controller');
-const user_controller					= require('./../controllers/user_controller');
+const controller = require('./../controllers/controller');
 
-router	.post(		'/clients',				client_controller.create)
-				.get(			'/clients/:id',		client_controller.read_one)
-				.get(			'/clients',				client_controller.read_many)
-				.put(			'/clients/:id',		client_controller.update)
-				.delete(	'/clients/:id',		client_controller.del);
-
-router	.post(		'/packages',				package_controller.create)
-				.get(			'/packages/:id',		package_controller.read_one)
-				.get(			'/packages',				package_controller.read_many)
-				.put(			'/packages/:id',		package_controller.update)
-				.delete(	'/packages/:id',		package_controller.del);
-
-router	.post(		'/users',						user_controller.create)
-				.get(			'/users/:id',				user_controller.read_one)
-				.get(			'/users',						user_controller.read_many)
-				.put(			'/users/:id',				user_controller.update)
-				.delete(	'/users/:id',				user_controller.del)
-				.post(		'/users',						user_controller.login)
+router	.post(		'/:table',				controller.create)
+				.get(			'/:table/:id',		controller.read_one)
+				.get(			'/:table',				controller.read_many)
+				.put(			'/:table/:id',		controller.update)
+				.delete(	'/:table/:id',		controller.del);
 
 //router.get('/clients/:id', client_controller.get);
 
