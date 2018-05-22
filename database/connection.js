@@ -47,7 +47,6 @@ module.exports = async function() {
 			});
 		}
 
-		console.log(structure);
 		resolve(connection);
 	});
 }
