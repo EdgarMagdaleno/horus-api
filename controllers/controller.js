@@ -1,5 +1,4 @@
 const db = require('./../database/connection');
-let connection = db();
 
 const create = async function(req, res) {
 	let connection = await db();
